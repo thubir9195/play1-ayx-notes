@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ayx · 简明指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f3f0;
+      color: #1e1e1e;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: #1f2428;
+      color: #e8e6e1;
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #c7a86a, #c7a86a 40%, #8ea4b2 70%, #c7a86a);
+      opacity: 0.35;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.65rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: #b5b0a8;
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* 浅色正文区 */
+    .content {
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.8rem 1.5rem 3.5rem;
+      flex: 1;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+      color: #2c2c2c;
+      border-left: 3px solid #c7a86a;
+      padding-left: 1rem;
+    }
+
+    .lead a {
+      color: #2f5c7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #a0b8cc;
+    }
+
+    .lead a:hover {
+      color: #1a3b50;
+      border-bottom-style: solid;
+    }
+
+    /* 承接 · 场景式段落 */
+    .story-block {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 2px 12px rgba(0,0,0,0.02);
+    }
+
+    .story-block p {
+      margin-bottom: 1rem;
+    }
+
+    .story-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-block strong {
+      color: #3a4d5e;
+      font-weight: 550;
+    }
+
+    .story-block a {
+      color: #2f5c7a;
+      text-decoration: none;
+      border-bottom: 1px solid #c7d4e0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .story-block a:hover {
+      color: #1a3b50;
+      border-bottom: 1px solid #1a3b50;
+    }
+
+    /* 特点列表 · 卡片式 */
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .feature-item {
+      background: #fafafa;
+      border: 1px solid #ece8e2;
+      border-radius: 14px;
+      padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+
+    .feature-item:hover {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .feature-item .icon {
+      font-size: 1.2rem;
+      color: #c7a86a;
+      display: inline-block;
+      margin-right: 0.3rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1f2a33;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .feature-item p {
+      font-size: 0.92rem;
+      color: #4b4b4b;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* 温和结尾 + 提示 */
+    .outro {
+      background: #ecebe7;
+      border-radius: 12px;
+      padding: 1.6rem 2rem;
+      margin-top: 2.2rem;
+      font-size: 0.95rem;
+      color: #3b3b3b;
+    }
+
+    .outro strong {
+      color: #2f4b5c;
+    }
+
+    .outro a {
+      color: #2f5c7a;
+      text-decoration: none;
+      border-bottom: 1px solid #b9cbdb;
+    }
+
+    .outro a:hover {
+      color: #1a3b50;
+      border-bottom: 1px solid #1a3b50;
+    }
+
+    .faq-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #d6d2cb;
+      font-size: 0.9rem;
+      color: #565656;
+    }
+
+    .faq-note summary {
+      cursor: pointer;
+      font-weight: 450;
+      color: #3a4d5e;
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-note p {
+      margin: 0.3rem 0 0 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1.8rem;
+      border-top: 1px solid #ddd8d0;
+      color: #7a7a7a;
+      font-size: 0.82rem;
+      background: #f5f3f0;
+    }
+
+    footer a {
+      color: #4a6a7f;
+      text-decoration: none;
+      border-bottom: 1px dotted #bccad6;
+    }
+
+    footer a:hover {
+      border-bottom: 1px solid #1f435a;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 2.8rem 1rem 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .content {
+        padding: 1.8rem 1rem 2.5rem;
+      }
+
+      .story-block {
+        padding: 1.3rem 1.2rem;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .outro {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .lead {
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero .tagline {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>一段关于 ayx 的简短印象</h1>
+  <p class="tagline">生活化的提醒，安静的指引 · 从访问前到熟悉后</p>
+</header>
+
+<main class="content">
+
+  <!-- 开场短句 + 嵌入链接 -->
+  <div class="lead">
+    如果你听说过 <a href="https://play1-ayx.com">ayx</a>，大概是因为它出现在某些日常片段里——也许是在搜索栏里多打了一个字母，又或者朋友随口提了一句。没什么大张旗鼓，它就那么待在某个角落，等人偶然经过。
+  </div>
+
+  <!-- 承接段落：简明指南的角度 -->
+  <div class="story-block">
+    <p><strong>在熟悉一个地方之前，我们总会先打量几眼。</strong> 界面是否顺眼？操作流畅吗？值不值得花时间？这些疑问很自然，<a href="https://play1-ayx.com">ayx</a> 的设计思路也恰好从这些细节出发。它不是用夸张的承诺来拉拢谁，而是把自己收拾得干净利落，让第一次来的人不至于手足无措。</p>
+    <p>这份指南既不冗长也不说教——只是把几个常见场景梳理出来：刚打开页面时看什么、常用功能的位置、以及如何避开一些新手容易绕弯子的地方。毕竟，好的工具不需要用户反复试错。</p>
+  </div>
+
+  <!-- 特点列表 -->
+  <div class="feature-list">
+    <div class="feature-item">
+      <h3><span class="icon">○</span> 入口简单</h3>
+      <p>首页没有堆满弹窗或强制注册。可以先浏览，再决定要不要深入——保持距离，也是一种尊重。</p>
+    </div>
+    <div class="feature-item">
+      <h3><span class="icon">○</span> 引导清晰</h3>
+      <p>主要功能入口都在显眼的位置，配色不刺眼，字号舒服。即便是第一次用，也不会迷路。</p>
+    </div>
+    <div class="feature-item">
+      <h3><span class="icon">○</span> 反馈温和</h3>
+      <p>操作后会有明确的提示，但不搞弹窗轰炸。加载状态平顺，不会让人干等着焦虑。</p>
+    </div>
+    <div class="feature-item">
+      <h3><span class="icon">○</span> 留有余地</h3>
+      <p>设置里保留了不少自定义空间——从语言偏好到通知频率，都由你说了算。</p>
+    </div>
+  </div>
+
+  <!-- 场景 + 访问提醒 -->
+  <div class="story-block">
+    <p><strong>场景一瞥：</strong> 假设你只是想找个地方浏览信息、处理点轻量任务，或者单纯好奇。打开 <a href="https://play1-ayx.com">ayx</a> 的第一眼，会看到干净的主页，没有浮夸的广告条。左侧的导航栏列出了几个主要分区，点击后内容加载很快。如果你需要一个临时安静的空间，它恰好能胜任。</p>
+    <p><strong>访问提醒：</strong> 和所有网络服务一样，建议使用最新版浏览器，并留意地址栏的链接是否准确。部分功能可能需要登录，但注册流程不长，且不要求绑定多余信息。如果遇到页面加载异常，可以试着刷新或检查网络——多数情况下一分钟就能恢复。</p>
+  </div>
+
+  <!-- 温和结尾 + FAQ 摘要 -->
+  <div class="outro">
+    <p><strong>最后说两句：</strong> 没有哪个站点是万能的，<a href="https://play1-ayx.com">ayx</a> 也一样。但它至少做到了一件事——不浪费你的时间。界面克制，响应及时，不故意制造迷惑。如果你愿意花几分钟四处点一点，大概就能感受到那种「刚刚好」的节奏。</p>
+
+    <div class="faq-note">
+      <details>
+        <summary>📌 常见疑问摘要</summary>
+        <p><strong>Q：</strong> 需要下载额外软件吗？<br>
+        <strong>A：</strong> 不用，浏览器打开即可。桌面端和移动端表现一致。</p>
+        <p><strong>Q：</strong> 隐私方面如何？<br>
+        <strong>A：</strong> 只收集基础运行数据，不会追踪浏览习惯。详情可查阅站内说明。</p>
+        <p><strong>Q：</strong> 遇到问题怎么办？<br>
+        <strong>A：</strong> 页面底部通常有简单的反馈入口，也可以通过常规渠道联系。</p>
+      </details>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>一份安静的介绍页 · 关于 <a href="https://play1-ayx.com">ayx</a> · 仅作指引，不构成任何承诺</p>
+</footer>
+
+</body>
+</html>
